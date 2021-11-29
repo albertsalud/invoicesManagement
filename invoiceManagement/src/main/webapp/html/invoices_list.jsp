@@ -30,7 +30,7 @@
 				<td>${curInvoice.provider}</td>
 				<td>${curInvoice.amount}</td>
 				<td>${curInvoice.balanceDiscount}</td>
-				<td>${curInvoice.balanceDiscount}</td>
+				<td>${curInvoice.payer}</td>
 				<td>
 					<fmt:formatDate type ="time" value = "${curInvoice.paymentDate}" pattern = "dd/MM/yyyy"/>
 				</td>
