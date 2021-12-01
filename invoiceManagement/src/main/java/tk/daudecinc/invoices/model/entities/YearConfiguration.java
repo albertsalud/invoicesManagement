@@ -13,12 +13,12 @@ import lombok.Data;
 public class YearConfiguration {
 	
 	@Id
-	private int year;
+	private Integer year;
 	
 	@Column(nullable = false)
-	private Long initialBalance;
+	private Float initialBalance;
 	
 	@Column(nullable = false)
-	private Long subvention;
+	private Float subvention;
 
 }

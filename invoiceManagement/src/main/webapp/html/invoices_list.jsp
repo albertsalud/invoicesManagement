@@ -34,6 +34,9 @@
 				<td>
 					<fmt:formatDate type ="time" value = "${curInvoice.paymentDate}" pattern = "dd/MM/yyyy"/>
 				</td>
+				<td>
+					<a href="./${curInvoice.id}">&gt; show invoice</a>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -22,7 +22,7 @@ import tk.daudecinc.invoices.model.entities.Invoice;
 import tk.daudecinc.invoices.model.services.InvoiceService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/invoices")
 public class InvoicesController {
 	
 	@Autowired

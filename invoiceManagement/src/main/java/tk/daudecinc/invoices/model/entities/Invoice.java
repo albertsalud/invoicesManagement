@@ -61,5 +61,8 @@ public class Invoice {
 		
 		this.year = yearCalendar.get(Calendar.YEAR);
 	}
+	
+	@Column(length = 250)
+	private String description;
 
 }
