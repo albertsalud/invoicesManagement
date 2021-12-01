@@ -1,5 +1,6 @@
 package tk.daudecinc.invoices.model.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,13 @@ public class YearConfigurationServiceImpl implements YearConfigurationService{
 
 	@Override
 	public YearConfiguration findByYear(Integer year) {
-		return yearRepository.findById(year).orElse(null);
+		int myYear = manageYear(year);
+		return yearRepository.findById(myYear).orElse(null);
+	}
+	
+	private int manageYear(Integer year) {
+		return year == null ?
+				LocalDate.now().getYear() : year.intValue();
 	}
 	
 	@Override

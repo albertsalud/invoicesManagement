@@ -24,7 +24,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 	}
 
 	private int manageYear(Integer year) {
-		
 		return year == null ?
 				LocalDate.now().getYear() : year.intValue();
 	}

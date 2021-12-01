@@ -11,44 +11,34 @@ import lombok.Data;
 import tk.daudecinc.invoices.utils.interfaces.BalanceDocument;
 
 @Data
-public class InvoiceDTO implements BalanceDocument{
+public class ExpenseDTO implements BalanceDocument{
 	
 	private Long id;
 	
+	@NotBlank
+	private String description;
+	
 	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date invoiceDate;
-	
-	@NotBlank
-	private String provider;
-	
-	@NotBlank
-	private String invoiceNumber;
+	private Date expenseDate;
 	
 	@NotNull
 	private Float amount;
-	
-	@NotBlank
-	private String payer;
-	
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date paymentDate;
-	private Boolean balanceDiscount;
-	
-	private String description;
-	
+
 	@Override
 	public Date getDocumentDate() {
-		return invoiceDate;
+		return expenseDate;
 	}
-	
+
+
 	@Override
 	public Boolean isBalanceDiscount() {
-		return balanceDiscount;
+		return true;
 	}
+
 	@Override
 	public Boolean isSubventionDiscount() {
-		return true;
+		return false;
 	}
 
 }
