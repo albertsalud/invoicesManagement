@@ -41,4 +41,10 @@ public class ExpenseDTO implements BalanceDocument{
 		return false;
 	}
 
+
+	@Override
+	public String getDocumentType() {
+		return "Gasto";
+	}
+
 }

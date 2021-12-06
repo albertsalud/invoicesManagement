@@ -46,9 +46,15 @@ public class InvoiceDTO implements BalanceDocument{
 	public Boolean isBalanceDiscount() {
 		return balanceDiscount;
 	}
+	
 	@Override
 	public Boolean isSubventionDiscount() {
 		return true;
+	}
+
+	@Override
+	public String getDocumentType() {
+		return "Factura";
 	}
 
 }

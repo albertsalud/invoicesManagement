@@ -52,6 +52,10 @@ $( function() {
 			Fecha de abono: <form:input path="paymentDate" />
 		</p>
 		<p>
+			Descripción: <form:input path="description" />
+			<form:errors path="description" />
+		</p>
+		<p>
 			Afecta al saldo: <form:checkbox path="balanceDiscount" />
 		</p>
 		<input type="submit" value="Guardar" />

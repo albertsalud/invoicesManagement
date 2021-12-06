@@ -13,4 +13,6 @@ public interface BalanceDocument {
 	public Boolean isSubventionDiscount();
 	
 	public Float getAmount();
+	
+	public String getDocumentType();
 }
