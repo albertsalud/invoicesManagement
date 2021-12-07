@@ -41,6 +41,11 @@ function setValues(subventionDiscount, balanceDiscount){
 			<td id="currentBalance">500€</td>
 		</tr>
 	</table>
+	<ul>
+		<li><a href="<c:url value="/configurations" />">&gt; Configuraciones</a></li>
+		<li><a href="<c:url value="/invoices" />">&gt; Facturas</a></li>
+		<li><a href="<c:url value="/expenses" />">&gt; Gastos</a></li>	
+	</ul>
 	<table class="table">
 		<tr>
 			<th>Fecha documento</th>

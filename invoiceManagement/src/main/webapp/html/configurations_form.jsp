@@ -10,6 +10,9 @@
 </head>
 <body>
 	<h1>Formulario de configuración</h1>
+	<ul>
+		<li><a href="<c:url value="/configurations" />" >&lt; Volver al listado de configuraciones</a></li>
+	</ul>
 	<c:url value="/configurations/save" var="formURL" />
 	<form:form modelAttribute="configuration" method="post" action="${formURL}" >
 		<p>

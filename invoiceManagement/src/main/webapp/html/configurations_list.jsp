@@ -8,9 +8,10 @@
 </head>
 <body>
 	<h1>Listado de configuraciones</h1>
-	<p>
-		<a href="./new">&gt; Añadir nueva configuración</a>
-	</p>
+	<ul>
+		<li><a href="<c:url value="/configurations/new" />">&gt; Añadir nueva configuración</a></li>
+		<li><a href="<c:url value="/" />" >&lt; Volver al balance</a></li>
+	</ul>
 	<table class="table">
 		<tr>
 			<th>Año</th>
@@ -24,7 +25,7 @@
 				<td>${curConfiguration.initialBalance}</td>
 				<td>${curConfiguration.subvention}</td>
 				<td>
-					<a href="./${curConfiguration.year}">&gt; show configuration</a>
+					<a href="<c:url value="/configurations/${curConfiguration.year}" />">&gt; show configuration</a>
 				</td>
 			</tr>
 		</c:forEach>

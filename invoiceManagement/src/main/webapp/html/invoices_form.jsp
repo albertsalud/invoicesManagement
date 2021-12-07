@@ -26,6 +26,9 @@ $( function() {
 </head>
 <body>
 	<h1>Formulario de factura</h1>
+	<ul>
+		<li><a href="<c:url value="/invoices" />" >&lt; Volver al listado de facturas</a></li>
+	</ul>
 	<form:form modelAttribute="invoiceFormDTO" method="post" action="save" >
 		<form:hidden path="id" />
 		<p>

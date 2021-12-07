@@ -9,9 +9,10 @@
 </head>
 <body>
 	<h1>Listado de facturas</h1>
-	<p>
-		<a href="./new">&gt; Añadir nueva factura</a>
-	</p>
+	<ul>
+		<li><a href="<c:url value="/invoices/new" />">&gt; Añadir nueva factura</a></li>
+		<li><a href="<c:url value="/" />" >&lt; Volver al balance</a></li>
+	</ul>
 	<table class="table">
 		<tr>
 			<th>Fecha factura</th>
@@ -35,7 +36,7 @@
 					<fmt:formatDate type ="time" value = "${curInvoice.paymentDate}" pattern = "dd/MM/yyyy"/>
 				</td>
 				<td>
-					<a href="./${curInvoice.id}">&gt; show invoice</a>
+					<a href="<c:url value="/invoices/${curInvoice.id}" />">&gt; show invoice</a>
 				</td>
 			</tr>
 		</c:forEach>
