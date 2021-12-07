@@ -23,10 +23,23 @@ function setValues(subventionDiscount, balanceDiscount){
 	$("#pendingSubvention").html(euroUE.format(pendingSubvention));
 	$("#currentBalance").html(euroUE.format(currentBalance));
 }
+
+function setYear(){
+	var year = $("#year-selector").val();
+	$(location).attr('href', "<c:url value="/" />" + "?year=" + year);
+}
 </script>
 </head>
 <body>
 	<h1>Balance</h1>
+	<p>
+		<select onchange="setYear()" id="year-selector">
+			<c:forEach items="${existentConfigurations}" var="curConfiguration">
+				<c:set var="selected" value="${param.year == curConfiguration.year ? 'selected' : ''}" />
+				<option <c:out value="${selected}" /> value="${curConfiguration.year}">${curConfiguration.year}</option>
+			</c:forEach>
+		</select>
+	</p>
 	<table>
 		<tr>
 			<th>Subvención Anual:</th>

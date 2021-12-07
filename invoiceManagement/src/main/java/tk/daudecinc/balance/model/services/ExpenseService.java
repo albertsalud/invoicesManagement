@@ -8,4 +8,8 @@ public interface ExpenseService {
 
 	public List<Expense> findAllByYear(Integer year);
 
+	public void save(Expense expenseToSave);
+
+	public Expense findById(Long expenseId);
+
 }

@@ -44,7 +44,7 @@ public class InvoiceDTO implements BalanceDocument{
 	
 	@Override
 	public Boolean isBalanceDiscount() {
-		return balanceDiscount;
+		return balanceDiscount && paymentDate != null;
 	}
 	
 	@Override

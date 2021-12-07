@@ -1,28 +1,43 @@
 package tk.daudecinc.balance.model.services.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tk.daudecinc.balance.model.entities.Expense;
+import tk.daudecinc.balance.model.repositories.ExpenseRepository;
 import tk.daudecinc.balance.model.services.ExpenseService;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService{
 
+	@Autowired
+	private ExpenseRepository expenseRepository;
+	
 	@Override
 	public List<Expense> findAllByYear(Integer year) {
-		Expense fakeExpense = new Expense();
-		fakeExpense.setAmount(150f);
-		fakeExpense.setDescription("A description");
-		fakeExpense.setExpenseDate(new Date());
+		int myYear = manageYear(year);
+		return expenseRepository.findAllByIdOrderByExpenseDateDesc((long) myYear);
 		
-		List<Expense> fakeList = new ArrayList<>();
-		fakeList.add(fakeExpense);
+	}
+
+	private int manageYear(Integer year) {
+		return year == null ?
+				LocalDate.now().getYear() : year.intValue();
+	}
+	
+	@Override
+	public void save(Expense expenseToSave) {
+		expenseRepository.save(expenseToSave);
 		
-		return fakeList;
+	}
+
+	@Override
+	public Expense findById(Long expenseId) {
+		return Optional.of(expenseRepository.findById(expenseId).get()).orElse(null);
 	}
 
 }
