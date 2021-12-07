@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tk.daudecinc.balance.controllers.dto.YearConfigurationDTO;
 import tk.daudecinc.balance.model.entities.YearConfiguration;
 import tk.daudecinc.balance.model.services.YearConfigurationService;
+import tk.daudecinc.balance.utils.ControllersUtils;
 import tk.daudecinc.balance.utils.interfaces.BalanceDocument;
 import tk.daudecinc.balance.utils.services.BalanceService;
 
@@ -27,6 +28,9 @@ public class BalanceController {
 	@Autowired
 	private BalanceService balanceService;
 	
+	@Autowired
+	private ControllersUtils controllersUtils;
+	
 	
 	@Autowired
 	private ModelMapper mapper;
@@ -39,13 +43,7 @@ public class BalanceController {
 		YearConfiguration yc = configurationService.findByYear(year);
 		model.addAttribute("configuration", mapper.map(yc, YearConfigurationDTO.class));
 		
-		List<YearConfiguration> configurations = configurationService.findAllOrderByYear();
-		model.addAttribute("existentConfigurations", 
-				configurations.stream()
-					.map(configuration -> {
-						return mapper.map(configuration, YearConfigurationDTO.class);
-						})
-					.collect(Collectors.toList()));
+		controllersUtils.addConfigurationsToModel(model);
 		
 		return "balance";
 	}

@@ -9,6 +9,11 @@
 </head>
 <body>
 	<h1>Listado de gastos</h1>
+	<p>
+		<jsp:include page="year-selector.jsp">
+			<jsp:param value="/expenses/" name="url"/>
+		</jsp:include>
+	</p>
 	<ul>
 		<li><a href="<c:url value="/expenses/new" />">&gt; Añadir nuevo gasto</a></li>
 		<li><a href="<c:url value="/" />" >&lt; Volver al balance</a></li>

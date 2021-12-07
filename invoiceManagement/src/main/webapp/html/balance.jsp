@@ -24,28 +24,29 @@ function setValues(subventionDiscount, balanceDiscount){
 	$("#currentBalance").html(euroUE.format(currentBalance));
 }
 
-function setYear(){
-	var year = $("#year-selector").val();
-	$(location).attr('href', "<c:url value="/" />" + "?year=" + year);
+function format(targetId){
+	$("#" + targetId).html(
+		euroUE.format(
+			$("#" + targetId).html()
+		)
+	);
 }
+
 </script>
 </head>
 <body>
 	<h1>Balance</h1>
 	<p>
-		<select onchange="setYear()" id="year-selector">
-			<c:forEach items="${existentConfigurations}" var="curConfiguration">
-				<c:set var="selected" value="${param.year == curConfiguration.year ? 'selected' : ''}" />
-				<option <c:out value="${selected}" /> value="${curConfiguration.year}">${curConfiguration.year}</option>
-			</c:forEach>
-		</select>
+		<jsp:include page="year-selector.jsp">
+			<jsp:param value="/" name="url"/>
+		</jsp:include>
 	</p>
 	<table>
 		<tr>
 			<th>Subvención Anual:</th>
-			<td>${configuration.subvention}</td>
+			<td id="subvention">${configuration.subvention}</td>
 			<th>Saldo inicial:</th>
-			<td>${configuration.initialBalance}</td>
+			<td id="initialBalance">${configuration.initialBalance}</td>
 		</tr>
 		<tr>
 			<th>Subvención pendiente:</th>
@@ -76,7 +77,9 @@ function setYear(){
 				</td>
 				<td>${curDocument.getDocumentType()}</td>
 				<td>${curDocument.description}</td>
-				<td>${curDocument.amount}</td>
+				<td>
+					<fmt:formatNumber type = "currency" minFractionDigits = "2" value = "${curDocument.amount}" />
+				</td>
 				<td>${curDocument.isBalanceDiscount()}</td>
 			</tr>
 			<c:if test="${curDocument.isSubventionDiscount()}">
@@ -90,7 +93,8 @@ function setYear(){
 	<script type="text/javascript">
 	
 	setValues(${subventionDiscount}, ${balanceDiscount});
-	
+	format("subvention");
+	format("initialBalance");
 	</script>
 </body>
 </html>

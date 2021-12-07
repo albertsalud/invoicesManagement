@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tk.daudecinc.balance.controllers.dto.InvoiceDTO;
 import tk.daudecinc.balance.model.entities.Invoice;
 import tk.daudecinc.balance.model.services.InvoiceService;
+import tk.daudecinc.balance.utils.ControllersUtils;
 
 @Controller
 @RequestMapping("/invoices")
@@ -30,6 +31,9 @@ public class InvoicesController {
 	
 	@Autowired
 	private ModelMapper mapper;
+	
+	@Autowired
+	private ControllersUtils controllersUtils;
 
 	@GetMapping(value = {"/", ""})
 	public String listInvoices(@RequestParam(required = false) Integer year,
@@ -43,6 +47,8 @@ public class InvoicesController {
 				})
 				.collect(Collectors.toList())
 				);
+		
+		controllersUtils.addConfigurationsToModel(model);
 		
 		return "invoices_list";
 	}

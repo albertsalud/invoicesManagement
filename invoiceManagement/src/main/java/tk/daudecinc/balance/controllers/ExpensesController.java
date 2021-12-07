@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tk.daudecinc.balance.controllers.dto.ExpenseDTO;
 import tk.daudecinc.balance.model.entities.Expense;
 import tk.daudecinc.balance.model.services.ExpenseService;
+import tk.daudecinc.balance.utils.ControllersUtils;
 
 @Controller
 @RequestMapping("/expenses")
@@ -30,6 +31,9 @@ public class ExpensesController {
 	
 	@Autowired
 	private ModelMapper mapper;
+	
+	@Autowired
+	private ControllersUtils controllersUtils;
 
 	@GetMapping(value = {"/", ""})
 	public String listExpenses(@RequestParam(required = false) Integer year,
@@ -43,6 +47,8 @@ public class ExpensesController {
 				})
 				.collect(Collectors.toList())
 				);
+		
+		controllersUtils.addConfigurationsToModel(model);
 		
 		return "expenses_list";
 	}

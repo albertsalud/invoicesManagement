@@ -1,6 +1,5 @@
 package tk.daudecinc.balance.model.services.impl;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import tk.daudecinc.balance.model.entities.Expense;
 import tk.daudecinc.balance.model.repositories.ExpenseRepository;
 import tk.daudecinc.balance.model.services.ExpenseService;
+import tk.daudecinc.balance.utils.ServicesUtils;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService{
@@ -17,16 +17,14 @@ public class ExpenseServiceImpl implements ExpenseService{
 	@Autowired
 	private ExpenseRepository expenseRepository;
 	
+	@Autowired
+	private ServicesUtils servicesUtils;
+	
 	@Override
 	public List<Expense> findAllByYear(Integer year) {
-		int myYear = manageYear(year);
-		return expenseRepository.findAllByIdOrderByExpenseDateDesc((long) myYear);
+		int myYear = servicesUtils.manageYear(year);
+		return expenseRepository.findAllByYearOrderByExpenseDateDesc(myYear);
 		
-	}
-
-	private int manageYear(Integer year) {
-		return year == null ?
-				LocalDate.now().getYear() : year.intValue();
 	}
 	
 	@Override

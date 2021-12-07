@@ -13,6 +13,11 @@
 		<li><a href="<c:url value="/invoices/new" />">&gt; Añadir nueva factura</a></li>
 		<li><a href="<c:url value="/" />" >&lt; Volver al balance</a></li>
 	</ul>
+	<p>
+		<jsp:include page="year-selector.jsp" >
+			<jsp:param value="/invoices/" name="url"/>
+		</jsp:include>
+	</p>
 	<table class="table">
 		<tr>
 			<th>Fecha factura</th>

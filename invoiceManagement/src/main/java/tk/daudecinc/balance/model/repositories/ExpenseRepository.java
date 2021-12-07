@@ -8,6 +8,6 @@ import tk.daudecinc.balance.model.entities.Expense;
 
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
-	public List<Expense> findAllByIdOrderByExpenseDateDesc(long myYear);
+	public List<Expense> findAllByYearOrderByExpenseDateDesc(int myYear);
 
 }

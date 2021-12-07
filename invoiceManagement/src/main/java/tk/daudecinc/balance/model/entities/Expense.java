@@ -1,5 +1,6 @@
 package tk.daudecinc.balance.model.entities;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +13,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 @Entity
@@ -35,5 +38,17 @@ public class Expense {
 	@Column(nullable = false)
 	private Float amount;
 	
+	@Column(nullable = false)
+	@Setter(value = AccessLevel.NONE)
+	private int year;
+	
+	public void setExpenseDate(Date expenseDate) {
+		this.expenseDate = expenseDate;
+		
+		Calendar yearCalendar = Calendar.getInstance();
+		yearCalendar.setTime(expenseDate);
+		
+		this.year = yearCalendar.get(Calendar.YEAR);
+	}
 
 }
