@@ -6,6 +6,12 @@
 <html>
 <head>
 <title>Insert title here</title>
+<script type="text/javascript">
+function askForDelete(){
+	return confirm("Se eliminará el elemento seleccionado. ¿Desea continuar?");
+}
+
+</script>
 </head>
 <body>
 	<h1>Listado de facturas</h1>
@@ -41,7 +47,8 @@
 					<fmt:formatDate type ="time" value = "${curInvoice.paymentDate}" pattern = "dd/MM/yyyy"/>
 				</td>
 				<td>
-					<a href="<c:url value="/invoices/${curInvoice.id}" />">&gt; show invoice</a>
+					<a href="<c:url value="/invoices/${curInvoice.id}" />">&gt; Ver factura</a>
+					<a onclick="return askForDelete()" href="<c:url value="/invoices/delete?invoice=${curInvoice.id}" />">&gt; Eliminar</a>
 				</td>
 			</tr>
 		</c:forEach>

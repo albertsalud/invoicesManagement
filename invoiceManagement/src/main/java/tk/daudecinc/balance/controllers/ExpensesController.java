@@ -96,4 +96,11 @@ public class ExpensesController {
 		return goToExpensesForm(model, dto);
 		
 	}
+	
+	@GetMapping("/delete")
+	public String deleteExpense(@RequestParam(name = "expense", required = true) Long expenseId, Model model) {
+		expenseService.deleteExpense(expenseId);
+		
+		return this.listExpenses(null, model);
+	}
 }

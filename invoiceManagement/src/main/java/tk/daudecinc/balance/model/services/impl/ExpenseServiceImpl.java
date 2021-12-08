@@ -38,4 +38,10 @@ public class ExpenseServiceImpl implements ExpenseService{
 		return Optional.of(expenseRepository.findById(expenseId).get()).orElse(null);
 	}
 
+	@Override
+	public void deleteExpense(Long expenseId) {
+		expenseRepository.deleteById(expenseId);
+		
+	}
+
 }

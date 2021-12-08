@@ -6,6 +6,12 @@
 <html>
 <head>
 <title>Insert title here</title>
+<script type="text/javascript">
+function askForDelete(){
+	return confirm("Se eliminará el elemento seleccionado. ¿Desea continuar?");
+}
+
+</script>
 </head>
 <body>
 	<h1>Listado de gastos</h1>
@@ -34,6 +40,7 @@
 				<td>${curExpense.amount}</td>
 				<td>
 					<a href="<c:url value="/expenses/${curExpense.id}" />">&gt; Ver gasto</a>
+					<a onclick="return askForDelete()" href="<c:url value="/expenses/delete?expense=${curExpense.id}" />">&gt; Eliminar</a>
 				</td>
 			</tr>
 		</c:forEach>

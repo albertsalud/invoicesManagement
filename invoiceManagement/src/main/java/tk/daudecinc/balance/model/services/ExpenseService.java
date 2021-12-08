@@ -12,4 +12,6 @@ public interface ExpenseService {
 
 	public Expense findById(Long expenseId);
 
+	public void deleteExpense(Long expenseId);
+
 }

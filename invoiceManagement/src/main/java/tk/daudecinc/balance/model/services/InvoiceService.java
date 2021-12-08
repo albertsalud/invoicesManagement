@@ -12,5 +12,7 @@ public interface InvoiceService {
 
 	public Invoice findById(Long invoiceId);
 
+	public void deleteInvoice(Long invoiceId);
+
 
 }

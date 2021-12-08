@@ -37,4 +37,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 		return Optional.of(invoiceRepository.findById(invoiceId)).get().orElse(null);
 	}
 
+	@Override
+	public void deleteInvoice(Long invoiceId) {
+		invoiceRepository.deleteById(invoiceId);
+		
+	}
+
 }

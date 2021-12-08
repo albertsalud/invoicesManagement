@@ -96,4 +96,11 @@ public class InvoicesController {
 		return goToInvoicesForm(model, dto);
 		
 	}
+	
+	@GetMapping("/delete")
+	public String deleteInvoice(@RequestParam(name = "invoice", required = true) Long invoiceId, Model model) {
+		invoiceService.deleteInvoice(invoiceId);
+		
+		return this.listInvoices(null, model);
+	}
 }
