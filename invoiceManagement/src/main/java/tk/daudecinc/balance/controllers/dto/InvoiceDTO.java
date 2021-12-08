@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 import tk.daudecinc.balance.utils.interfaces.BalanceDocument;
@@ -36,6 +37,11 @@ public class InvoiceDTO implements BalanceDocument{
 	private Boolean balanceDiscount;
 	
 	private String description;
+	private int year;
+	
+	private MultipartFile invoiceFile;
+	
+	private String documentName;
 	
 	@Override
 	public Date getDocumentDate() {
@@ -55,6 +61,11 @@ public class InvoiceDTO implements BalanceDocument{
 	@Override
 	public String getDocumentType() {
 		return "Factura";
+	}
+
+	@Override
+	public MultipartFile getFile() {
+		return this.getInvoiceFile();
 	}
 
 }

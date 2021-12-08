@@ -47,8 +47,11 @@ function askForDelete(){
 					<fmt:formatDate type ="time" value = "${curInvoice.paymentDate}" pattern = "dd/MM/yyyy"/>
 				</td>
 				<td>
-					<a href="<c:url value="/invoices/${curInvoice.id}" />">&gt; Ver factura</a>
+					<a href="<c:url value="/invoices/${curInvoice.id}" />">&gt; Modificar</a>
 					<a onclick="return askForDelete()" href="<c:url value="/invoices/delete?invoice=${curInvoice.id}" />">&gt; Eliminar</a>
+					<c:if test="${not empty curInvoice.documentName}">
+						<a target="_blank" href="https://daudecinc.tk/uploaded/${curInvoice.year}/Factura/${curInvoice.documentName}">&gt; Ver factura</a>
+					</c:if>
 				</td>
 			</tr>
 		</c:forEach>

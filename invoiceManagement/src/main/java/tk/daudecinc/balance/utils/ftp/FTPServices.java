@@ -12,13 +12,13 @@ import lombok.Getter;
 @Component
 public class FTPServices {
 	
-	@Value("${im.ftp.host}")
+	@Value("${dd5.ftp.host}")
 	private String hostname;
 	
-	@Value("${im.ftp.username}")
+	@Value("${dd5.ftp.username}")
 	private String username;
 	
-	@Value("${im.ftp.password}")
+	@Value("${dd5.ftp.password}")
 	private String password;
 	
 	

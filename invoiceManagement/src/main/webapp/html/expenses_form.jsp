@@ -26,7 +26,7 @@ $( function() {
 	<ul>
 		<li><a href="<c:url value="/expenses" />" >&lt; Volver al listado de gastos</a></li>
 	</ul>
-	<form:form modelAttribute="expenseFormDTO" method="post" action="save" >
+	<form:form modelAttribute="expenseFormDTO" method="post" action="save" enctype="multipart/form-data" >
 		<form:hidden path="id" />
 		<p>
 			Fecha gasto: <form:input path="expenseDate" />
@@ -40,6 +40,13 @@ $( function() {
 			Cantidad: <form:input path="amount" />
 			<form:errors path="amount" />
 		</p>
+		<p>
+			Documento asociado: ${expenseFormDTO.documentName}
+		</p>
+		<p>
+			Subir documento: <form:input type="file" path="expenseFile" accept="image/png, image/jpeg, application/pdf"/>
+			<form:hidden path="documentName"/>
+		</p>		
 		<input type="submit" value="Guardar" />
 	</form:form>
 </body>

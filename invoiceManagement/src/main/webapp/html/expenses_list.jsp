@@ -39,8 +39,11 @@ function askForDelete(){
 				<td>${curExpense.description}</td>
 				<td>${curExpense.amount}</td>
 				<td>
-					<a href="<c:url value="/expenses/${curExpense.id}" />">&gt; Ver gasto</a>
+					<a href="<c:url value="/expenses/${curExpense.id}" />">&gt; Modificar</a>
 					<a onclick="return askForDelete()" href="<c:url value="/expenses/delete?expense=${curExpense.id}" />">&gt; Eliminar</a>
+					<c:if test="${not empty curExpense.documentName}">
+						<a target="_blank" href="https://daudecinc.tk/uploaded/${curExpense.year}/Gasto/${curExpense.documentName}">&gt; Ver documento</a>
+					</c:if>					
 				</td>
 			</tr>
 		</c:forEach>

@@ -21,6 +21,7 @@ import tk.daudecinc.balance.controllers.dto.ExpenseDTO;
 import tk.daudecinc.balance.model.entities.Expense;
 import tk.daudecinc.balance.model.services.ExpenseService;
 import tk.daudecinc.balance.utils.ControllersUtils;
+import tk.daudecinc.balance.utils.services.UploadDocumentService;
 
 @Controller
 @RequestMapping("/expenses")
@@ -34,6 +35,9 @@ public class ExpensesController {
 	
 	@Autowired
 	private ControllersUtils controllersUtils;
+	
+	@Autowired
+	private UploadDocumentService uploadDocumentService;
 
 	@GetMapping(value = {"/", ""})
 	public String listExpenses(@RequestParam(required = false) Integer year,
@@ -75,6 +79,13 @@ public class ExpensesController {
 		}
 		
 		Expense expenseToSave = mapper.map(dto, Expense.class);
+		dto.setYear(expenseToSave.getYear());
+		
+		String newDocumentName = uploadDocumentService.uploadDocument(dto);
+		if(newDocumentName != null) {
+			expenseToSave.setDocumentName(newDocumentName);
+		}
+		
 		expenseService.save(expenseToSave);
 		
 		return this.listExpenses(null, model);

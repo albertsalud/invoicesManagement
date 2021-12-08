@@ -42,6 +42,9 @@ public class Expense {
 	@Setter(value = AccessLevel.NONE)
 	private int year;
 	
+	@Column(length = 200)
+	private String documentName;
+	
 	public void setExpenseDate(Date expenseDate) {
 		this.expenseDate = expenseDate;
 		

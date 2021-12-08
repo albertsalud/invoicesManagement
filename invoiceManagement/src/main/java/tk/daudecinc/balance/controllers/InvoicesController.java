@@ -21,6 +21,7 @@ import tk.daudecinc.balance.controllers.dto.InvoiceDTO;
 import tk.daudecinc.balance.model.entities.Invoice;
 import tk.daudecinc.balance.model.services.InvoiceService;
 import tk.daudecinc.balance.utils.ControllersUtils;
+import tk.daudecinc.balance.utils.services.UploadDocumentService;
 
 @Controller
 @RequestMapping("/invoices")
@@ -34,6 +35,9 @@ public class InvoicesController {
 	
 	@Autowired
 	private ControllersUtils controllersUtils;
+	
+	@Autowired
+	private UploadDocumentService uploadDocumentService;
 
 	@GetMapping(value = {"/", ""})
 	public String listInvoices(@RequestParam(required = false) Integer year,
@@ -75,6 +79,13 @@ public class InvoicesController {
 		}
 		
 		Invoice invoiceToSave = mapper.map(dto, Invoice.class);
+		dto.setYear(invoiceToSave.getYear());
+		
+		String newDocumentName = uploadDocumentService.uploadDocument(dto);
+		if(newDocumentName != null) {
+			invoiceToSave.setDocumentName(newDocumentName);
+		}
+		
 		invoiceService.save(invoiceToSave);
 		
 		return this.listInvoices(null, model);

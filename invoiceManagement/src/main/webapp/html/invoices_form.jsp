@@ -29,7 +29,7 @@ $( function() {
 	<ul>
 		<li><a href="<c:url value="/invoices" />" >&lt; Volver al listado de facturas</a></li>
 	</ul>
-	<form:form modelAttribute="invoiceFormDTO" method="post" action="save" >
+	<form:form modelAttribute="invoiceFormDTO" method="post" action="save" enctype="multipart/form-data" >
 		<form:hidden path="id" />
 		<p>
 			Fecha factura: <form:input path="invoiceDate" />
@@ -61,6 +61,13 @@ $( function() {
 		<p>
 			Afecta al saldo: <form:checkbox path="balanceDiscount" />
 		</p>
+		<p>
+			Documento asociado: ${invoiceFormDTO.documentName}
+		</p>
+		<p>
+			Nuevo documento: <form:input type="file" path="invoiceFile" accept="image/png, image/jpeg, application/pdf"/>
+			<form:hidden path="documentName"/>
+		</p>	
 		<input type="submit" value="Guardar" />
 	</form:form>
 </body>

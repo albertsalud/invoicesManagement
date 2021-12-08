@@ -53,6 +53,9 @@ public class Invoice {
 	private Date paymentDate;
 	private Boolean balanceDiscount;
 	
+	@Column(length = 200)
+	private String documentName;
+	
 	public void setInvoiceDate(Date invoiceDate) {
 		this.invoiceDate = invoiceDate;
 		
