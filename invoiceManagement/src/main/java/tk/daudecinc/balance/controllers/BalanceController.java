@@ -1,7 +1,6 @@
 package tk.daudecinc.balance.controllers;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import tk.daudecinc.balance.controllers.dto.YearConfigurationDTO;
 import tk.daudecinc.balance.model.entities.YearConfiguration;
 import tk.daudecinc.balance.model.services.YearConfigurationService;
 import tk.daudecinc.balance.utils.ControllersUtils;
+import tk.daudecinc.balance.utils.YearHolder;
 import tk.daudecinc.balance.utils.interfaces.BalanceDocument;
 import tk.daudecinc.balance.utils.services.BalanceService;
 
@@ -31,16 +31,21 @@ public class BalanceController {
 	@Autowired
 	private ControllersUtils controllersUtils;
 	
+	@Autowired
+	private YearHolder yearHolder;
+	
 	
 	@Autowired
 	private ModelMapper mapper;
 	
 	@GetMapping(value = {"", "/"})
 	public String home(@RequestParam(required = false) Integer year, Model model) {
-		List<BalanceDocument> documents = balanceService.findBalanceDocumentsByYear(year);
+		yearHolder.setYear(year);
+				
+		List<BalanceDocument> documents = balanceService.findBalanceDocumentsByYear(yearHolder.getYear());
 		model.addAttribute("balanceDocuments", documents);
 		
-		YearConfiguration yc = configurationService.findByYear(year);
+		YearConfiguration yc = configurationService.findByYear(yearHolder.getYear());
 		model.addAttribute("configuration", mapper.map(yc, YearConfigurationDTO.class));
 		
 		controllersUtils.addConfigurationsToModel(model);
