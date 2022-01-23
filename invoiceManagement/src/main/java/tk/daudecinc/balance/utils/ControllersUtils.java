@@ -20,6 +20,9 @@ public class ControllersUtils {
 	
 	@Autowired
 	private ModelMapper mapper;
+	
+	@Autowired
+	private YearHolder yearHolder;
 
 	public void addConfigurationsToModel(Model model) {
 		
@@ -30,5 +33,6 @@ public class ControllersUtils {
 						return mapper.map(configuration, YearConfigurationDTO.class);
 						})
 					.collect(Collectors.toList()));
+		model.addAttribute("selectedYear", yearHolder.getYear());
 	}
 }

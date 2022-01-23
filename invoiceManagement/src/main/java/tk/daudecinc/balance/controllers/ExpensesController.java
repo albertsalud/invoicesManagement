@@ -21,6 +21,7 @@ import tk.daudecinc.balance.controllers.dto.ExpenseDTO;
 import tk.daudecinc.balance.model.entities.Expense;
 import tk.daudecinc.balance.model.services.ExpenseService;
 import tk.daudecinc.balance.utils.ControllersUtils;
+import tk.daudecinc.balance.utils.YearHolder;
 import tk.daudecinc.balance.utils.services.UploadDocumentService;
 
 @Controller
@@ -38,11 +39,16 @@ public class ExpensesController {
 	
 	@Autowired
 	private UploadDocumentService uploadDocumentService;
+	
+	@Autowired
+	private YearHolder yearHolder;
 
 	@GetMapping(value = {"/", ""})
 	public String listExpenses(@RequestParam(required = false) Integer year,
 			Model model) {
-		List<Expense> expenses = expenseService.findAllByYear(year);
+		yearHolder.setYear(year);
+		
+		List<Expense> expenses = expenseService.findAllByYear(yearHolder.getYear());
 		
 		model.addAttribute("expensesList", 
 			expenses.stream()
