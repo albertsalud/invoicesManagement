@@ -29,8 +29,8 @@ function askForDelete(){
 				<tr>
 					<th>Fecha factura</th>
 					<th>Proveedor</th>
+					<th>Descripción</th>
 					<th>Importe</th>
-					<th>Afecta al saldo</th>
 					<th>Pagador</th>
 					<th>Fecha de abono</th>
 					<th>&nbsp;</th>
@@ -41,8 +41,10 @@ function askForDelete(){
 							<fmt:formatDate type ="time" value = "${curInvoice.invoiceDate}" pattern = "dd/MM/yyyy"/>
 						</td>
 						<td>${curInvoice.provider}</td>
-						<td>${curInvoice.amount}</td>
-						<td>${curInvoice.balanceDiscount}</td>
+						<td>${curInvoice.description}</td>
+						<td class="currency">
+							<fmt:formatNumber type = "currency" minFractionDigits = "2" value = "${curInvoice.amount}" />
+						</td>
 						<td>${curInvoice.payer}</td>
 						<td>
 							<fmt:formatDate type ="time" value = "${curInvoice.paymentDate}" pattern = "dd/MM/yyyy"/>

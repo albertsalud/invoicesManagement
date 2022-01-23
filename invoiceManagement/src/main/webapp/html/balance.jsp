@@ -46,15 +46,15 @@ function format(targetId){
 			<table id="data-table" cellpadding="5" cellspacing="0">
 				<tr>
 					<th>Subvención anual:</th>
-					<td id="subvention">${configuration.subvention}</td>
+					<td id="subvention" class="currency">${configuration.subvention}</td>
 					<th>Saldo inicial:</th>
-					<td id="initialBalance">${configuration.initialBalance}</td>
+					<td id="initialBalance" class="currency">${configuration.initialBalance}</td>
 				</tr>
 				<tr>
 					<th>Subvención pendiente:</th>
-					<td id="pendingSubvention">1000€</td>
+					<td id="pendingSubvention" class="currency">1000€</td>
 					<th>Saldo actual:</th>
-					<td id="currentBalance">500€</td>
+					<td id="currentBalance" class="currency">500€</td>
 				</tr>
 			</table>
 			<p><a href="<c:url value="/configurations" />">&gt; Configuraciones</a></p>
@@ -66,7 +66,6 @@ function format(targetId){
 					<th>Tipo</th>
 					<th>Descripción</th>
 					<th>Importe</th>
-					<th>Afecta saldo</th>
 				</tr>
 				<c:set var="subventionDiscount" value="0" />
 				<c:set var="balanceDiscount" value="0" />
@@ -77,10 +76,9 @@ function format(targetId){
 						</td>
 						<td>${curDocument.getDocumentType()}</td>
 						<td>${curDocument.description}</td>
-						<td>
+						<td class="currency">
 							<fmt:formatNumber type = "currency" minFractionDigits = "2" value = "${curDocument.amount}" />
 						</td>
-						<td>${curDocument.isBalanceDiscount()}</td>
 					</tr>
 					<c:if test="${curDocument.isSubventionDiscount()}">
 						<c:set var="subventionDiscount" value="${subventionDiscount + curDocument.amount }"/>

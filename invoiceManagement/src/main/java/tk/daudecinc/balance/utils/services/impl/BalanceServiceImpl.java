@@ -1,6 +1,7 @@
 package tk.daudecinc.balance.utils.services.impl;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,7 +47,10 @@ public class BalanceServiceImpl implements BalanceService{
 					.collect(Collectors.toList())
 				);
 		
-		return documents;
+		
+		return documents.stream()
+			.sorted(Comparator.comparing(BalanceDocument::getDocumentDate))
+			.collect(Collectors.toList());
 	}
 
 }
