@@ -38,7 +38,9 @@ function askForDelete(){
 							<fmt:formatDate type ="time" value = "${curExpense.expenseDate}" pattern = "dd/MM/yyyy"/>
 						</td>
 						<td>${curExpense.description}</td>
-						<td>${curExpense.amount}</td>
+						<td class="currency">
+							<fmt:formatNumber type = "currency" minFractionDigits = "2" value = "${curExpense.amount}" />
+						</td>
 						<td>
 							<a href="<c:url value="/expenses/${curExpense.id}" />">&gt; Modificar</a>
 							<a onclick="return askForDelete()" href="<c:url value="/expenses/delete?expense=${curExpense.id}" />">&gt; Eliminar</a>

@@ -32,4 +32,9 @@
 	    	if(endDate == "") $("#endDate").val(startDate);
 	    }
 	  </script>
+	  <style>
+	  	td.currency{
+	  		text-align: right;
+	  	}
+	  </style>
 </head>

@@ -41,6 +41,8 @@ public class BalanceController {
 	@GetMapping(value = {"", "/"})
 	public String home(@RequestParam(required = false) Integer year, Model model) {
 		yearHolder.setYear(year);
+		
+		if(yearHolder.getYear() == null) return "redirect:/configurations";
 				
 		List<BalanceDocument> documents = balanceService.findBalanceDocumentsByYear(yearHolder.getYear());
 		model.addAttribute("balanceDocuments", documents);
