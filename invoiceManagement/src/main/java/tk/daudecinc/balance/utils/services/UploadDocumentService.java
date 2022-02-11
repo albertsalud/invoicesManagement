@@ -1,13 +1,13 @@
 package tk.daudecinc.balance.utils.services;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +23,8 @@ public class UploadDocumentService {
 	@Autowired
 	private FTPServices ftpServices;
 	
-	private String documentsFolder = "/uploaded";
+	@Value("${dd5.ftp.documentsRootFolder}")
+	private String documentsFolder;
 	
 	public String uploadDocument(BalanceDocument document) {
 		if(Strings.isEmpty(document.getFile().getOriginalFilename())) return null;
