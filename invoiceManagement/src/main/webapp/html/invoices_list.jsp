@@ -33,7 +33,9 @@ function askForDelete(){
 					<th>Importe</th>
 					<th>Pagador</th>
 					<th>Fecha de abono</th>
-					<th>&nbsp;</th>
+					<th style="text-align: right;">
+						<a target="_blank" href="<c:url value="/invoices/download?year=${selectedYear}" />" style="color: inherit;">&gt; Descargar facturas</a>
+					</th>
 				</tr>
 				<c:forEach items="${invoicesList}" var="curInvoice">
 					<tr>
